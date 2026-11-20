@@ -1,0 +1,13 @@
+{
+  "name": "amazonas",
+  "version": "1.0.0",
+  "description": "O jogo das Amazonas com uma amazona de cada lado, todos os inicios de 14 tabuleiros pequenos varridos",
+  "type": "module",
+  "private": false,
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test testes/nucleo.test.js testes/medidas.test.js testes/pesados.test.js",
+    "medir": "node ferramentas/medidor.js"
+  }
+}
