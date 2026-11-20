@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amazonas: quem ganha cada inicio</title>
+<meta name="description" content="O jogo das Amazonas com uma amazona de cada lado, todos os inicios de 14 tabuleiros varridos: no 3x3 e no 3x5 quem comeca ganha sempre, no 3x7 o padrao quebra em 4 inicios.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<header>
+  <h1>Amazonas</h1>
+  <p>A amazona anda como a dama do xadrez e, de onde parar, atira uma flecha também como dama. A casa da flecha fica bloqueada para sempre. Quem fica sem lance perde. Aqui cada lado tem uma amazona só, num tabuleiro pequeno.</p>
+</header>
+
+<main>
+
+<section>
+  <h2>Jogue</h2>
+  <div class="painel">
+    <div class="linha">
+      <select id="tamanho" aria-label="tabuleiro">
+        <option value="3x3">3 × 3</option>
+        <option value="3x5">3 colunas × 5 linhas</option>
+        <option value="4x4" selected>4 × 4</option>
+        <option value="3x6">3 colunas × 6 linhas</option>
+      </select>
+      <button id="reiniciar" type="button">Nova partida</button>
+    </div>
+    <p class="fraco">Você joga com a amazona clara. Clique nela, depois onde ela para, depois onde cai a flecha (o losango amarelo).</p>
+    <div id="tabuleiro" class="grade"></div>
+    <p id="estado"></p>
+  </div>
+</section>
+
+<section>
+  <h2>O que a varredura respondeu</h2>
+  <p>Para cada tabuleiro, todos os inícios possíveis: uma amazona clara numa casa, uma escura em outra, e a clara joga primeiro.</p>
+
+  <h3>Nas faixas de três colunas, ímpar é de quem começa</h3>
+  <p>No 3×3 e no 3×5 quem começa ganha de <strong>todos</strong> os inícios, 72 de 72 e 210 de 210. No 3×4 e no 3×6, não: perde em 40 e em 144. O 3×7 quase segue o padrão, e quebra em <strong>4 dos 420</strong> inícios. São duas posições e os espelhos delas: a amazona de quem começa no meio da borda curta, e a outra uma ou duas casas à frente, na mesma coluna.</p>
+
+  <h3>O 5×5 das quinas opostas é de quem começa</h3>
+  <p>É o maior caso medido: 11.401.184 posições guardadas, perto do teto de 2²⁴ entradas do <code>Map</code> do JavaScript, em cerca de cinco minutos.</p>
+
+  <h3>As duas reduções juntas rendem mais que o produto</h3>
+  <p>Juntar posições simétricas e tentar primeiro os lances que deixam o outro com menos opções cortam o trabalho cada uma por conta própria. Medidas nas quatro combinações, as duas juntas rendem <strong>40,30×</strong> no 4×4, mais que o produto das separadas, 36,41×. O mesmo acontece no 3×4 e no 3×5.</p>
+</section>
+
+<section>
+  <h2>Como rodar</h2>
+  <pre><code>npm test                              # a suite inteira
+npm run medir                         # as tabelas leves
+node ferramentas/medidor.js pesados   # 3x7 e 4x5</code></pre>
+  <p>O código está em <a href="https://github.com/condeDeveloper/amazonas">github.com/condeDeveloper/amazonas</a>.</p>
+</section>
+
+</main>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
